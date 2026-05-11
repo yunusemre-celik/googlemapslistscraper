@@ -1,111 +1,111 @@
-# Google Maps İşletme Scraper 🗺️
+# Google Maps Business Scraper 🗺️
 
-Google Maps'teki **arama sonuçları**, **kayıtlı liste** veya **kısa link** üzerinden işletmelerin adını, telefon numarasını, web sitesini ve adresini otomatik olarak toplar. Çıktıyı interaktif bir HTML tablosuna dönüştürür.
-
----
-
-## ✨ Özellikler
-
-- 🔗 Her türlü Google Maps URL'ini destekler
-- 📋 İşletme adı, kategori, telefon, web sitesi, adres toplar
-- 📄 Satır görünümlü HTML raporu üretir
-- ☑️ Her satırda checkbox ile işaretleme
-- 📝 Tarayıcıda otomatik kaydedilen not alanı
-- 🔍 Anlık arama/filtreleme
-- 🖱️ Çift tıkla çalıştır (`.bat` kısayolu)
+Automatically collects business names, phone numbers, websites, and addresses from any Google Maps **search result**, **saved list**, or **short link**. Outputs an interactive HTML report.
 
 ---
 
-## 🚀 Kurulum
+## ✨ Features
 
-**Gereksinimler:** [Node.js](https://nodejs.org) (v16+)
+- 🔗 Supports any Google Maps URL type
+- 📋 Collects name, category, phone, website, and address
+- 📄 Generates a clean row-based HTML report
+- ☑️ Checkbox per row for tracking
+- 📝 Persistent notes field (saved in browser localStorage)
+- 🔍 Instant search / filter across all columns
+- 🖱️ One-click launcher (`.bat` shortcut for Windows)
+
+---
+
+## 🚀 Setup
+
+**Requirements:** [Node.js](https://nodejs.org) v16+
 
 ```bash
-# Bağımlılıkları yükle
+# Install dependencies
 npm install
 
-# Playwright tarayıcısını indir (sadece ilk kurulumda)
+# Download Playwright browser (first time only)
 npx playwright install chromium
 ```
 
 ---
 
-## 🖥️ Kullanım
+## 🖥️ Usage
 
-### Yöntem 1 — Çift Tıkla (Kolay)
-`SCRAPER BAŞLAT.bat` dosyasına çift tıklayın.
+### Option 1 — Double Click (Easiest)
+Double-click `SCRAPER BAŞLAT.bat`.
 
-### Yöntem 2 — Terminal
+### Option 2 — Terminal
 ```bash
 npm start
 ```
 
-### Yöntem 3 — URL Argümanıyla
+### Option 3 — Pass URL directly
 ```bash
-node scraper.js "https://www.google.com/maps/search/restoran/@..."
+node scraper.js "https://www.google.com/maps/search/restaurant/@..."
 ```
 
 ---
 
-## 📌 Desteklenen URL Tipleri
+## 📌 Supported URL Types
 
-| Tip | Örnek |
-|-----|-------|
-| Arama sonuçları | `https://www.google.com/maps/search/restoran/...` |
-| Kayıtlı liste | `https://www.google.com/maps/placelists/...` |
-| Kısa link | `https://maps.app.goo.gl/...` |
+| Type | Example |
+|------|---------|
+| Search results | `https://www.google.com/maps/search/restaurant/...` |
+| Saved list | `https://www.google.com/maps/placelists/...` |
+| Short link | `https://maps.app.goo.gl/...` |
 
 ---
 
-## 📁 Proje Yapısı
+## 📁 Project Structure
 
 ```
-google-kaydedilen-scraper/
-├── scraper.js          ← Ana scraper kodu
-├── SCRAPER BAŞLAT.bat  ← Windows kısayolu
+google-maps-scraper/
+├── scraper.js          ← Main scraper script
+├── SCRAPER BAŞLAT.bat  ← Windows launcher shortcut
 ├── package.json
 ├── README.md
-└── cikti/              ← Çıktılar (Git'e eklenmez)
+└── cikti/              ← Output folder (excluded from Git)
     └── isletmeler.html
 ```
 
 ---
 
-## ⚙️ Çalışma Akışı
+## ⚙️ How It Works
 
 ```
-URL gir → Tarayıcı açılır → Sayfa yüklenir → İşletmeler listelenir
-→ Her işletme tek tek ziyaret edilir → HTML rapor oluşur
+Paste URL → Browser opens → Page loads → Businesses are listed
+→ Each business is visited individually → HTML report is saved
 ```
 
-Eğer sayfa giriş gerektiriyorsa:
-1. Tarayıcıda Google hesabınıza giriş yapın
-2. Terminalde **Enter**'a basın → scraper devam eder
+If the page requires a Google login:
+1. Sign in to your Google account in the opened browser
+2. Press **Enter** in the terminal → scraper continues automatically
 
 ---
 
-## 📊 HTML Çıktısı
+## 📊 HTML Output Columns
 
-| Sütun | İçerik |
-|-------|--------|
-| ☑ | İşaretleme kutusu (localStorage'da saklanır) |
-| İşletme Adı | Ad + kategori etiketi |
-| Telefon | Tıklanabilir `tel:` linki |
-| Web Sitesi | Tıklanabilir URL |
-| Adres | Düz metin |
-| Harita | Google Maps'te aç |
-| Not | Otomatik kaydedilen not alanı |
-
----
-
-## ⚠️ Notlar
-
-- Google Maps'in HTML yapısı zaman zaman değişebilir; bu durumda CSS seçicileri güncellenebilir
-- Çok fazla istek atmamak için her işletme arasında ~1.2 saniye beklenir
-- Scraper tamamen **ücretsizdir**, hiçbir API anahtarı gerektirmez
+| Column | Description |
+|--------|-------------|
+| ☑ | Checkbox for tracking (persisted in localStorage) |
+| Business Name | Name + category badge |
+| Phone | Clickable `tel:` link |
+| Website | Clickable URL |
+| Address | Plain text |
+| Map | Opens in Google Maps |
+| Notes | Auto-saved note field |
 
 ---
 
-## 📄 Lisans
+## ⚠️ Notes
+
+- Google Maps' HTML structure may change over time; CSS selectors may need updating if that happens
+- A ~1.2 second delay is added between each business request to avoid rate limiting
+- Completely **free** — no API key required
+
+---
+
+## 📄 License
 
 MIT
