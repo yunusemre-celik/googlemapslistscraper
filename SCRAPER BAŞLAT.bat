@@ -18,7 +18,15 @@ if %errorlevel% neq 0 (
 )
 
 npm start
+set EXIT_CODE=%errorlevel%
 
+echo.
+if %EXIT_CODE% neq 0 (
+    echo  [HATA] Scraper bir hata ile sonlandi! Hata kodu: %EXIT_CODE%
+    echo  Yukaridaki hata mesajini okuyun.
+) else (
+    echo  Scraper basariyla tamamlandi.
+)
 echo.
 echo  Pencereyi kapatmak icin bir tusa basin...
 pause >nul

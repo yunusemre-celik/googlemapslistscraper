@@ -384,12 +384,12 @@ window.addEventListener('load',()=>{
 });
 function saveCB(id,v){
   localStorage.setItem(KEY_CB+id,v?'1':'0');
-  document.querySelector(`.cb[data-id="${id}"]`).closest('tr').classList.toggle('checked',v);
+  document.querySelector('.cb[data-id="'+id+'"').closest('tr').classList.toggle('checked',v);
   updateCount();
 }
 function saveNote(id,v){
   localStorage.setItem(KEY_NOTE+id,v);
-  const ta=document.querySelector(`.note[data-id="${id}"]`);
+  const ta=document.querySelector('.note[data-id="'+id+'"');
   autoH(ta);
 }
 function autoH(ta){ta.style.height='auto';ta.style.height=ta.scrollHeight+'px';}
@@ -432,7 +432,11 @@ function esc(s) {
   return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-main().catch(err => {
+main().catch(async err => {
   console.error('\n❌ Kritik hata:', err.message);
+  console.error(err.stack || '');
+  // Pencere anında kapanmasın — kullanıcı hatayı okuyabilsin
+  const rl2 = require('readline').createInterface({ input: process.stdin, output: process.stdout });
+  await new Promise(resolve => rl2.question('\n  [Kapatmak için Enter\'a basın] ', () => { rl2.close(); resolve(); }));
   process.exit(1);
 });
